@@ -34,7 +34,7 @@ local.properties
 # PDT-specific
 .buildpath
 
-
+*.idea
 .idea/**
 src/main/webapp/.idea/**
 *.iml
