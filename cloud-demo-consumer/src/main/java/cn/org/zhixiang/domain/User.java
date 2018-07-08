@@ -1,6 +1,6 @@
-package cn.org.zhixiang.domin;
+package cn.org.zhixiang.domain;
 
-public class User{
+public class User {
 
     private long id;
     private String name;
