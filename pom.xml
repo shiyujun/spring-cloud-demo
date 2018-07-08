@@ -20,7 +20,7 @@
                 <dependency>
                     <groupId>org.springframework.cloud</groupId>
                     <artifactId>spring-cloud-dependencies</artifactId>
-                    <version>Camden.SRI</version>
+                    <version>Finchley.RELEASE</version>
                     <type>pom</type>
                     <scope>import</scope>
                 </dependency>
@@ -36,6 +36,7 @@
     <modules>
         <module>cloud-demo-provider</module>
         <module>cloud-demo-consumer</module>
+        <module>cloud-demo-eureka</module>
     </modules>
 
     <build>
