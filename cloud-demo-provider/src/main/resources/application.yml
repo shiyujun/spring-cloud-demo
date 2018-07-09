@@ -1,2 +1,14 @@
+spring:
+  application:
+    name: provider-demo
+
 server:
   port: 8078
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka
+

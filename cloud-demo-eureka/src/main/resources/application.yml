@@ -1,3 +1,13 @@
+spring:
+  application:
+    name: eureka-server
+  security:
+    basic:
+      enabled: true
+    user:
+      name: root
+      password: root
+
 server:
   host: localhost
   port: 8761
@@ -6,5 +16,9 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://${server.host}:${server.port}/eureka
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${server.host}:${server.port}/eureka
+  instance:
+    instance-id: eureka-server
+
+
 
