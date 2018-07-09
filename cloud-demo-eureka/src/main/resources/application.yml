@@ -17,8 +17,6 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${server.host}:${server.port}/eureka
-  instance:
-    instance-id: eureka-server
 
 
 

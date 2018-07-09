@@ -2,6 +2,7 @@ package cn.org.zhixiang.controller;
 
 import cn.org.zhixiang.domain.User;
 import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -22,13 +23,13 @@ public class UserController {
 
     @Autowired
     private DiscoveryClient discoveryClient;
+    @Autowired
+    private EurekaClient eurekaClient;
 
     @GetMapping("/getUser/{id}")
     public User getUser(@PathVariable Long id){
-        List<ServiceInstance> list = discoveryClient.getInstances("eureka-server");
-        if (list != null && list.size() > 0 ) {
-            System.out.println(list.get(0).getUri());
-        }
+        InstanceInfo instanceInfo= eurekaClient.getNextServerFromEureka("consumer-demo",false);
+        String url=instanceInfo.getHomePageUrl();
         return restTemplate.getForObject("http://localhost:8078/user/getUser/"+id,User.class);
     }
 }
