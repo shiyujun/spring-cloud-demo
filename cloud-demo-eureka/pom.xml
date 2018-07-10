@@ -19,6 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <!--注意此处的依赖是SpringBoot2.0以后专用的，如果您使用的SpringBoot版本低于2.0请使用spring-cloud-starter-eureka-server-->
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
         <dependency>
