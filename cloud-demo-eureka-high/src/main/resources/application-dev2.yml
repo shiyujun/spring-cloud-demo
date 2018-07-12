@@ -1,0 +1,9 @@
+server:
+  port: ${dev.dev2Port}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${dev.host}:${dev.dev1Port}/eureka,http://${dev.host}:${dev.dev3Port}/eureka
+
+
+
