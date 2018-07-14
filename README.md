@@ -14,3 +14,5 @@
 <br>
 <a href="https://zhixiang.org.cn/#/blog/read/7c4e3ff7-786c-47fb-bdc3-d0856c8415ff">如何使用高可用的Eureka </a>
 <br>
+<a href="https://zhixiang.org.cn/#/blog/read/4f908c52-4ab9-4261-8189-e76a9fdbcc14">Hystrix使用 </a>
+<br>

@@ -40,6 +40,8 @@
         <module>cloud-demo-provider-2</module>
         <module>cloud-demo-consumer-feign</module>
         <module>cloud-demo-eureka-high</module>
+        <module>cloud-demo-consumer-hystrix</module>
+        <module>cloud-demo-consumer-feign-hystrix</module>
     </modules>
 
     <build>
