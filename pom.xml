@@ -42,6 +42,7 @@
         <module>cloud-demo-eureka-high</module>
         <module>cloud-demo-consumer-hystrix</module>
         <module>cloud-demo-consumer-feign-hystrix</module>
+        <module>cloud-demo-zuul</module>
     </modules>
 
     <build>
