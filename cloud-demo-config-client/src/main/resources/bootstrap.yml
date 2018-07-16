@@ -1,0 +1,8 @@
+spring.application.name: config-client
+server.port: 8080
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: master
+
