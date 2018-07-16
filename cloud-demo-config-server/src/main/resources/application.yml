@@ -1,0 +1,14 @@
+spring.application.name: config-server
+server.port: 8080
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/2388386839/spring-cloud-demo
+          searchPaths: config
+          #username: your name
+          #password: your pass
+      label: master
+

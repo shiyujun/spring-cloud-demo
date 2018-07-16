@@ -1,8 +1,16 @@
-spring.application.name: config-client
-server.port: 8080
+server.port: 8999
+
 spring:
+  application:
+    name: config-client
+  profiles:
+    active: dev
   cloud:
     config:
-      uri: http://localhost:8888
-      label: master
+      uri: http://localhost:8080
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka
 

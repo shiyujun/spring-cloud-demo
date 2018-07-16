@@ -43,6 +43,8 @@
         <module>cloud-demo-consumer-hystrix</module>
         <module>cloud-demo-consumer-feign-hystrix</module>
         <module>cloud-demo-zuul</module>
+        <module>cloud-demo-config-server</module>
+        <module>cloud-demo-config-client</module>
     </modules>
 
     <build>
