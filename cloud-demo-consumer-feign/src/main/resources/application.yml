@@ -4,7 +4,15 @@ spring:
 
 server:
   port: 8089
-
+management:
+  endpoints:
+    web:
+      exposure:
+        #exclude: shutdown,threaddump   #此处控制的是不开放哪些端点
+        include: "*" #此处控制的是开放哪些端点，如果需要开启少数端点可以这样配置：health,info。如果开启多个则使用*号开启除了exclude的端点
+  endpoint:
+    health:
+      show-details: always
 eureka:
   client:
     register-with-eureka: true
