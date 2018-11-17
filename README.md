@@ -20,4 +20,5 @@
 <br>
 <a href="http://zhixiang.org.cn/2018/08/12/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E7%82%B9SpringCloud%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8Apollo%E5%81%9A%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83//">使用Apollo做配置中心 </a>
 <br><a href="http://zhixiang.org.cn/2018/11/16/每天学点SpringCloud（十）：SpringCloud监控/">SpringCloud监控管理 </a>
+<br><a href="http://localhost:4000/2018/11/17/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E7%82%B9SpringCloud%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AHystrix%E4%BB%AA%E8%A1%A8%E7%9B%98/">Hystrix仪表盘 </a>
 <br>
