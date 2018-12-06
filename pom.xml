@@ -45,6 +45,7 @@
         <module>cloud-demo-zuul</module>
         <module>cloud-demo-config-server</module>
         <module>cloud-demo-config-client</module>
+        <module>cloud-demo-zipkin-server</module>
     </modules>
 
     <build>

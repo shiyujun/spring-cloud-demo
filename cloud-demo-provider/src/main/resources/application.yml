@@ -1,7 +1,10 @@
 spring:
+  zipkin:
+    base-url: http://localhost:19411
+    sender:
+      type: web
   application:
     name: provider-demo
-
 server:
   port: 8078
 
