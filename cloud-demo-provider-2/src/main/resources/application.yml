@@ -1,6 +1,24 @@
 spring:
   application:
     name: provider-demo
+  cloud:
+    stream:
+      binders:
+        test:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                addresses: 10.0.20.132
+                port: 5672
+                username: root
+                password: root
+                virtual-host: /unicode-pay
+      bindings:
+        testOutPut:
+          destination: testRabbit
+          content-type: application/json
+          default-binder: test
 
 server:
   port: 8079

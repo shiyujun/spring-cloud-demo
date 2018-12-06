@@ -1,7 +1,24 @@
 spring:
   application:
     name: consumer-demo
-
+  cloud:
+    stream:
+      binders:
+        test:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                addresses: 10.0.20.132
+                port: 5672
+                username: root
+                password: root
+                virtual-host: /unicode-pay
+      bindings:
+        testInPut:
+          destination: testRabbit
+          content-type: application/json
+          default-binder: test
 server:
   port: 8088
 #为服务Id名称为provider-demo的项目配置负载均衡规则为com.netflix.loadbalancer.WeightedResponseTimeRule
