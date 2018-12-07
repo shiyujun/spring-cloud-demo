@@ -2,11 +2,9 @@ package cn.org.zhixiang.mq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.stereotype.Service;
 
 /**
  * d
@@ -18,7 +16,7 @@ import org.springframework.stereotype.Service;
 @EnableBinding(MqMessageSource.class)
 public class MqMessageProducer {
     @Autowired
-    @Input(MqMessageSource.TEST_OUT_PUT)
+    @Output(MqMessageSource.TEST_OUT_PUT)
     private MessageChannel channel;
 
 

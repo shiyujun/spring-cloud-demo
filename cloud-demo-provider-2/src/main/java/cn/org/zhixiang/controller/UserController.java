@@ -2,13 +2,8 @@ package cn.org.zhixiang.controller;
 
 import cn.org.zhixiang.domain.User;
 import cn.org.zhixiang.mq.MqMessageProducer;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")

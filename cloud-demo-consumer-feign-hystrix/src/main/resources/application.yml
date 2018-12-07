@@ -1,7 +1,17 @@
 spring:
   application:
     name: consumer-demo-feign
-
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    addresses: 10.0.20.132
+    port: 5672
+    username: root
+    password: root
+  zipkin:
+    rabbitmq:
+      queue: zipkin
 server:
   port: 8089
 

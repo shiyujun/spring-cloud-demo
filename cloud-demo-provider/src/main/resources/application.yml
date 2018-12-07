@@ -1,10 +1,19 @@
 spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    addresses: 10.0.20.132
+    port: 5672
+    username: root
+    password: root
   zipkin:
-    base-url: http://localhost:19411
-    sender:
-      type: web
+    rabbitmq:
+      queue: zipkin
   application:
     name: provider-demo
+
+
 server:
   port: 8078
 
