@@ -25,3 +25,8 @@
 <br><a href="http://shiyujun.cn/2018/12/07/每天学点SpringCloud（十三）：SpringCloud-Stream整合RabbitMQ/">SpringCloud-Stream整合RabbitMQ </a>
 <br><a href="http://shiyujun.cn/2018/12/07/学点SpringCloud（十四）：Zipkin使用SpringCloud-Stream以及Elasticsearch/">Zipkin使用SpringCloud-Stream以及Elasticsearch/ </a>
 <br>
+扫码关注公众号即可领取2000GJava学习资源 </h4>
+
+
+
+![1](https://shiyujun.cn/img/gongzhonghao.jpg)
