@@ -13,7 +13,7 @@ public class UserController {
 
 
     @GetMapping(value = "/getUser/{id}")
-    public User getUser(@PathVariable Long id){
+    public User getUser(@PathVariable("id") Long id){
         User user=new User();
         user.setId(id);
         user.setName("张三");

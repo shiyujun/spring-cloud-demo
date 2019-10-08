@@ -17,7 +17,7 @@ public class UserController {
     private UserFeignClient userFeignClient;
 
     @GetMapping("/getUser/{id}")
-    public User getUser(@PathVariable Long id){
+    public User getUser(@PathVariable("id") Long id){
          return userFeignClient.getUser(id);
     }
 }
