@@ -46,6 +46,7 @@
         <module>cloud-demo-config-server</module>
         <module>cloud-demo-config-client</module>
         <module>cloud-demo-zipkin-server</module>
+        <module>hystrix-helloword</module>
     </modules>
 
     <build>
