@@ -18,7 +18,6 @@ public class HelloCommand extends HystrixCommand<String> {
 
     @Override
     protected String run() throws Exception {
-        Thread.sleep(1800);
         return "sucess";
     }
 
