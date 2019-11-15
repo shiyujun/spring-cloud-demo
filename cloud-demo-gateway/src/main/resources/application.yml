@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: cloud-demo-gateway
+  cloud:
+    gateway:
+      default-filters:
+      locator:
+        enabled: true
+        lowerCaseServiceId: true
+      routes:
+      - id: test1
+        predicates:
+        - Path=/api/test1/**
+        uri: http://localhost:8088
+      - id: test2
+        predicates:
+        - Path=/api/test2/**
+        uri: lb://consumer-demo-feign
+        filters:
+          - Test
+      - id: test3
+        predicates:
+        - Path=/api/test3/**
+        uri: lb://consumer-demo
+        filters:
+        - name: Hystrix
+          args:
+            name: default
+            fallbackUri: forward:/defaultfallback
+      - id: test4
+        predicates:
+        - Path=/api/test4/**
+        uri: lb://consumer-demo
+        filters:
+        - name: RequestRateLimiter
+          args:
+            key-resolver: "#{@remoteAddrKeyResolver}"
+            redis-rate-limiter.replenishRate: 100
+            redis-rate-limiter.burstCapacity: 150
+
+
+
+hystrix:
+  command:
+    fallbackmd:
+      execution:
+        timeout:
+          enabled: true
+      circuitBreaker:
+        enabled: true
+      fallback:
+        enabled: true
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://root:root@localhost:8761/eureka
+
+server:
+  port: 9090
+
+
+
+
