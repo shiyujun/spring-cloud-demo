@@ -8,7 +8,7 @@
 
 
     <parent>
-        <groupId>cn.org.cn.org.zhixiang</groupId>
+        <groupId>cn.org.zhixiang</groupId>
         <artifactId>spring-cloud-demo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
