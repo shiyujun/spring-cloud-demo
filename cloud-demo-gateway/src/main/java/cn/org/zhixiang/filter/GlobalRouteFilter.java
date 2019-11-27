@@ -44,8 +44,8 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        HttpHeaders headers = new HttpHeaders();
-        BodyInserter bodyInserter = this.getBodyInserter(exchange, headers);
+        HttpHeaders headers=new HttpHeaders();
+        BodyInserter bodyInserter = this.getBodyInserter(exchange);
         CachedBodyOutputMessage outputMessage = new CachedBodyOutputMessage(exchange, headers);
         return bodyInserter.insert(outputMessage, new BodyInserterContext())
                 .then(Mono.defer(() -> {
@@ -53,8 +53,8 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
                     log.info("原始请求体:{}", body);
 
                    /*-----------------------重新封装请求参数--------------------------*/
-                    ServerHttpRequestDecorator decorator = this.getServerHttpRequestDecorator(exchange, headers, outputMessage);
-                    ServerHttpResponse decoratedResponse = this.getServerHttpResponse(exchange, headers);
+                    ServerHttpRequestDecorator decorator = this.getServerHttpRequestDecorator(exchange, outputMessage);
+                    ServerHttpResponse decoratedResponse = this.getServerHttpResponse(exchange);
                     return chain.filter(exchange.mutate().request(decorator).response(decoratedResponse).build());
                 }));
 
@@ -64,7 +64,7 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
     /**
      * 获取请求参数
      */
-    private BodyInserter getBodyInserter(ServerWebExchange exchange, HttpHeaders headers) {
+    private BodyInserter getBodyInserter(ServerWebExchange exchange) {
         ServerRequest serverRequest = new DefaultServerRequest(exchange);
         Mono<String> modifiedBody = serverRequest.bodyToMono(String.class)
                 .flatMap(body -> {
@@ -72,31 +72,15 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
                     return Mono.just(body);
                 });
         BodyInserter bodyInserter = BodyInserters.fromPublisher(modifiedBody, String.class);
-
-        headers.putAll(exchange.getRequest().getHeaders());
-        headers.remove(HttpHeaders.CONTENT_LENGTH);
         return bodyInserter;
     }
 
     /**
      * 重新包装请求体
      */
-    private ServerHttpRequestDecorator getServerHttpRequestDecorator(ServerWebExchange exchange, HttpHeaders headers, CachedBodyOutputMessage outputMessage) {
+    private ServerHttpRequestDecorator getServerHttpRequestDecorator(ServerWebExchange exchange, CachedBodyOutputMessage outputMessage) {
         ServerHttpRequestDecorator decorator = new ServerHttpRequestDecorator(
                 exchange.getRequest()) {
-            @Override
-            public HttpHeaders getHeaders() {
-                long contentLength = headers.getContentLength();
-                HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.putAll(super.getHeaders());
-                if (contentLength > 0) {
-                    httpHeaders.setContentLength(contentLength);
-                } else {
-                    httpHeaders.set(HttpHeaders.TRANSFER_ENCODING, "chunked");
-                }
-                return httpHeaders;
-            }
-
             @Override
             public Flux<DataBuffer> getBody() {
                 return outputMessage.getBody();
@@ -110,21 +94,11 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
     /**
      * 重新包装响应体
      */
-    private ServerHttpResponse getServerHttpResponse(ServerWebExchange exchange, HttpHeaders headers) {
+    private ServerHttpResponse getServerHttpResponse(ServerWebExchange exchange) {
         ServerHttpResponse originalResponse = exchange.getResponse();
         DataBufferFactory bufferFactory = originalResponse.bufferFactory();
         ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
-            public HttpHeaders getHeaders() {
-                long contentLength = headers.getContentLength();
-                HttpHeaders httpHeaders = new HttpHeaders();
-                httpHeaders.putAll(super.getHeaders());
-                if (contentLength > 0) {
-                    httpHeaders.setContentLength(contentLength);
-                } else {
-                    httpHeaders.set(HttpHeaders.TRANSFER_ENCODING, "chunked");
-                }
-                return httpHeaders;
-            }
+
 
             @Override
             public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
@@ -144,7 +118,6 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
                             i.read(array);
                             DataBufferUtils.release(i);
                             outputStream.write(array, 0, array.length);
-                            log.info("后端返回数据：{}", outputStream);
                         });
                         String result = outputStream.toString();
                         try {
@@ -183,7 +156,7 @@ public class GlobalRouteFilter implements GlobalFilter, Ordered {
 
     @Override
     public int getOrder() {
-        return 0;
+        return -2;
     }
 }
 
